@@ -69,6 +69,7 @@ setup(
             "mlx_lm.share = mlx_lm.share:main",
             "mlx_lm.manage = mlx_lm.manage:main",
             "mlx_lm.upload = mlx_lm.upload:main",
+            "mlx_lm.qwen35_optimize = mlx_lm.qwen35_optimizer:main",
         ]
     },
 )

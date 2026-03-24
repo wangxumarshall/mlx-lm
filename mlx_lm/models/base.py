@@ -127,11 +127,22 @@ def scaled_dot_product_attention(
             bits=cache.bits,
         )
     else:
-        return mx.fast.scaled_dot_product_attention(
-            queries,
-            keys,
-            values,
-            scale=scale,
-            mask=mask,
-            sinks=sinks,
-        )
+        import inspect
+        sig = inspect.signature(mx.fast.scaled_dot_product_attention)
+        if "sinks" in sig.parameters and sinks is not None:
+            return mx.fast.scaled_dot_product_attention(
+                queries,
+                keys,
+                values,
+                scale=scale,
+                mask=mask,
+                sinks=sinks,
+            )
+        else:
+            return mx.fast.scaled_dot_product_attention(
+                queries,
+                keys,
+                values,
+                scale=scale,
+                mask=mask,
+            )
